@@ -47,7 +47,7 @@ jobs:
     #    name: my_fastapi_app
     #    path: my_fastapi_app.tar
     - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
+      uses: 'google-github-actions/auth@v2'
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
