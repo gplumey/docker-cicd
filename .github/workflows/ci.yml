@@ -47,6 +47,13 @@ jobs:
         name: my_fastapi_app
         path: my_fastapi_app.tar
 
+    - name: Tag Docker image
+      run: docker tag "my_fastapi_app" "${DOCKER_REGISTRY}/my_fastapi_app:latest"
+    - name: Push Docker image
+      run: docker push  "${DOCKER_REGISTRY}/my_fastapi_app:latest"
+
+
+
   security-scan:
     needs: build-and-test
     runs-on: ubuntu-latest
