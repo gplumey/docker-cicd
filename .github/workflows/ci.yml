@@ -48,9 +48,9 @@ jobs:
         path: my_fastapi_app.tar
 
     - name: Tag Docker image
-      run: docker tag "my_fastapi_app:latest" "${DOCKER_REGISTRY}/my_fastapi_app:latest"
+      run: docker tag "my_fastapi_app:latest" "${{env.DOCKER_REGISTRY}}/my_fastapi_app:latest"
     - name: Push Docker image
-      run: docker push  "${DOCKER_REGISTRY}/my_fastapi_app:latest"
+      run: docker push  "${{env.DOCKER_REGISTRY}}/my_fastapi_app:latest"
 
 
 
