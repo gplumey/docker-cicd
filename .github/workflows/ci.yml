@@ -51,6 +51,9 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
+    - name: 'auth docker'
+      run: gcloud auth configure-docker
+
     - name: Tag Docker image
       run: docker tag "my_fastapi_app:latest" "${{vars.DOCKER_REGISTRY}}/my_fastapi_app:latest"
     - name: Push Docker image
