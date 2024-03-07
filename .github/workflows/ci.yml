@@ -41,11 +41,16 @@ jobs:
     - name: Save Docker image
       run: docker save my_fastapi_app:latest > my_fastapi_app.tar
 
-    - name: Upload Docker image as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: my_fastapi_app
-        path: my_fastapi_app.tar
+    #- name: Upload Docker image as artifact
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: my_fastapi_app
+    #    path: my_fastapi_app.tar
+    - name: Authenticate with Google Cloud Registry
+      run: |
+        echo $GCLOUD_SERVICE_KEY > keyfile.json
+        gcloud auth activate-service-account --key-file=keyfile.json
+        gcloud auth configure-docker
 
     - name: Tag Docker image
       run: docker tag "my_fastapi_app:latest" "${{vars.DOCKER_REGISTRY}}/my_fastapi_app:latest"
